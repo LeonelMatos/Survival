@@ -16,6 +16,9 @@ public class Movement : MonoBehaviour
     float speed;
     bool isRunning;
 
+    [Required]
+    public Controls controls;
+
     [Title("Speeds")]
     [Range(0f, 10f)]
     public float walkingSpeed = 4.0f;
@@ -42,7 +45,7 @@ public class Movement : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(controls.run))
         {
             if (!isRunning)
             {

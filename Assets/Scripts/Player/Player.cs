@@ -10,12 +10,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     int playerHealth = 100;
 
-    public int playerTeste = 13;
+    public int getHealth() { return playerHealth; }
+    public void setHealth(int health) { playerHealth = health; }
 
-    public int getHealth() {
-        return playerHealth;
-    }
-    public void setHealth(int health) {
-        playerHealth = health;
-    }
+
 }

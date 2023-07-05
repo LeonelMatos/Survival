@@ -33,7 +33,6 @@ public class DialogueManager : MonoBehaviour
         definedDialogue = dialogue;
         animator.SetBool("IsOpen", true);
         IsRunning = animator.GetBool("IsOpen");
-        //Debug.Log("Starting conversation with " + dialogue.name);
 
         nameText.text = dialogue.name;
 
@@ -54,7 +53,6 @@ public class DialogueManager : MonoBehaviour
             EndDialogue();
             definedDialogue.isDone = true;
             dialogueTrigger.GetComponent<DialogueTrigger>().SetDialogue();
-            //return;
         }
 
         string sentence = senteces.Dequeue();

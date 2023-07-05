@@ -12,8 +12,6 @@ public class Player : MonoBehaviour
 
     public int playerTeste = 13;
 
-
-
     public int getHealth() {
         return playerHealth;
     }

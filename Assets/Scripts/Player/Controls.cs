@@ -12,4 +12,7 @@ public class Controls : ScriptableObject
 
 	[Title("Movement", "", TitleAlignments.Centered)]
 	public KeyCode run = KeyCode.LeftShift;
+
+	[Title("Terminal", "", TitleAlignments.Centered)]
+	public KeyCode terminal = KeyCode.Slash;
 }

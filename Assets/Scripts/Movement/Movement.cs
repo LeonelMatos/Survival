@@ -19,6 +19,8 @@ public class Movement : MonoBehaviour
     [Required]
     public Controls controls;
 
+    private GameController gameController;
+
     [Title("Speeds")]
     [Range(0f, 10f)]
     public float walkingSpeed = 4.0f;
@@ -38,10 +40,15 @@ public class Movement : MonoBehaviour
         playerTexture = gameObject.GetComponentInChildren<SpriteRenderer>();
 
         speed = walkingSpeed;
+
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
     }
 
     private void Update()
     {
+        if (gameController.INPUT_LOCK)
+            return;
+
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
 
@@ -75,6 +82,12 @@ public class Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (gameController.INPUT_LOCK)
+        {
+            body.velocity = Vector2.zero;
+            return;
+        }
+
         if (horizontal != 0 && vertical != 0)
         {
             horizontal *= moveLimiter;

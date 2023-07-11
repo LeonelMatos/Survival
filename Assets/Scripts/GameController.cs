@@ -13,7 +13,6 @@ public class GameController : MonoBehaviour
 
     public void setInputLock() {
         INPUT_LOCK = INPUT_LOCK ? false : true;
-        Debug.Log("Changed input lock state to " + INPUT_LOCK);
     }
 
     public void defineInputLock(bool state) {

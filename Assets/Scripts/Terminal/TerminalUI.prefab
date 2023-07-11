@@ -206,8 +206,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -488,34 +488,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-
-    Cras a mauris
-    mollis ligula mattis consectetur sed in leo.
-
-    Phasellus mollis urna sed lacinia
-    tristique.
-
-    Sed sagittis purus a nunc tempor, ut porta mauris pretium.
-
-    Aliquam
-    efficitur neque a molestie hendrerit.
-
-    Nunc at augue in mauris rhoncus fermentum.
-
-    Mauris
-    sollicitudin urna vel tellus ornare faucibus.
-
-    Fusce eleifend orci quis mollis
-    imperdiet.
-
-    Curabitur sed tellus at diam vestibulum lobortis in quis ante.
-
-    Pellentesque
-    semper nisi nec elit semper, id laoreet diam rutrum.
-
-    Donec in nibh et nibh
-    tincidunt malesuada.'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

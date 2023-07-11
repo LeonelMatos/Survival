@@ -505,7 +505,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 460, y: 30}
+  m_AnchoredPosition: {x: 460, y: 0}
   m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &631893655
@@ -8232,6 +8232,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1856191562}
   - component: {fileID: 1856191561}
+  - component: {fileID: 1856191564}
   - component: {fileID: 1856191563}
   m_Layer: 0
   m_Name: GameController
@@ -8282,6 +8283,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7832a987e1c1f64285c1671a3a18718, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1856191564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856191560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6cbe770c3835db478c00a87bce7fbef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  history: []
 --- !u!1 &2073954467
 GameObject:
   m_ObjectHideFlags: 0

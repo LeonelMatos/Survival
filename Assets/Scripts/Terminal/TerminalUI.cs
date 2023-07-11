@@ -15,14 +15,17 @@ public class TerminalUI : MonoBehaviour
 	[Required]
 	public GameObject canvas;
 
-	private GameObject terminal;
+	private GameObject terminalObject;
 
 	private bool terminal_state = false;
 
 	private GameController gameController;
 
+	private Terminal terminal;
+
     private void Start () {
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+		terminal = gameObject.GetComponent<Terminal>();
     }
 
     private void Update()
@@ -41,12 +44,13 @@ public class TerminalUI : MonoBehaviour
 
 	private void InstantiateTerminal()
 	{
-		Debug.Log("Opened terminal");
 		terminal_state = true;
-		terminal = Instantiate(terminalPrefab, Vector3.zero, Quaternion.identity);
-		terminal.transform.SetParent(canvas.transform, false);
+		terminalObject = Instantiate(terminalPrefab, Vector3.zero, Quaternion.identity);
+		terminalObject.transform.SetParent(canvas.transform, false);
 
-		TMP_InputField inputField = terminal.transform.GetChild(1).GetComponent<TMP_InputField>();
+		terminal.updateOutput();
+
+		TMP_InputField inputField = terminalObject.transform.GetChild(1).GetComponent<TMP_InputField>();
 
         inputField.onEndEdit.AddListener(delegate { EnterCommand(); });
 
@@ -54,15 +58,32 @@ public class TerminalUI : MonoBehaviour
 	}
 
 	private void KillTerminal() {
-		Debug.Log("Closed terminal");
 		terminal_state = false;
-		GameObject.Destroy(terminal);
+		GameObject.Destroy(terminalObject);
 
         gameController.setInputLock();
     }
 
 	public void EnterCommand() {
-		Debug.Log("Sending command");
+		TMP_InputField inputField = terminalObject.transform.GetChild(1).GetComponent<TMP_InputField>();
+
+		string text = inputField.text;
+		inputField.text = "";
+
+		terminal.setCommand(text);
+	}
+
+	public void writeOutput(List<string> history) {
+		TextMeshProUGUI textBox = terminalObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+
+		string text = "";
+
+		foreach(string line in history)
+		{
+			text += line + "\n";
+		}
+
+		textBox.SetText(text);
 	}
 
 }

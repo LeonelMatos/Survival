@@ -1,12 +1,10 @@
+using Cinemachine;
+using Sirenix.OdinInspector;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Sirenix.OdinInspector;
-using Cinemachine;
 
-public class Movement : MonoBehaviour
-{
+public class Movement : MonoBehaviour {
     Rigidbody2D body;
 
     float horizontal;
@@ -31,8 +29,7 @@ public class Movement : MonoBehaviour
 
     SpriteRenderer playerTexture;
 
-    private void Start()
-    {
+    private void Start () {
         body = GetComponent<Rigidbody2D>();
 
         cinemachineCam = GameObject.FindGameObjectWithTag("CMCAM").GetComponent<CinemachineVirtualCamera>();
@@ -44,8 +41,7 @@ public class Movement : MonoBehaviour
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
     }
 
-    private void Update()
-    {
+    private void Update () {
         if (gameController.INPUT_LOCK)
             return;
 
@@ -80,8 +76,7 @@ public class Movement : MonoBehaviour
             playerTexture.flipX = true;
     }
 
-    private void FixedUpdate()
-    {
+    private void FixedUpdate () {
         if (gameController.INPUT_LOCK)
         {
             body.velocity = Vector2.zero;
@@ -97,8 +92,7 @@ public class Movement : MonoBehaviour
         body.velocity = new Vector2(horizontal * speed, vertical * speed);
     }
 
-    IEnumerator CameraFadeOut()
-    {
+    IEnumerator CameraFadeOut () {
         for (int i = 0; i < 10; i++)
         {
             cinemachineCam.m_Lens.OrthographicSize += 0.08f;
@@ -106,8 +100,7 @@ public class Movement : MonoBehaviour
         }
     }
 
-    IEnumerator CameraFadeIn()
-    {
+    IEnumerator CameraFadeIn () {
         for (int i = 0; i < 10; i++)
         {
             cinemachineCam.m_Lens.OrthographicSize -= 0.08f;

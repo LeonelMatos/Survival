@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+
 public class TerminalUI : MonoBehaviour
 {
 	[Required]
@@ -73,15 +74,21 @@ public class TerminalUI : MonoBehaviour
 		terminal.setCommand(text);
 	}
 
-	public void writeOutput(List<string> history) {
+	public void writeOutput(ref List<Entry> history) {
 		TextMeshProUGUI textBox = terminalObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
 
 		string text = "";
 
-		foreach(string line in history)
+		for (int i = 0; i < history.Count; i++)
 		{
-			text += line + "\n";
+			Entry line = history[i];
+			if (line.time_hour == 0)
+				text += line.command + "\n";
+			else
+				text += line.time_hour +":"+ line.time_minute +":"+ line.time_second +"<color=yellow> > </color>"+ line.command +"\n";
 		}
+
+
 
 		textBox.SetText(text);
 	}

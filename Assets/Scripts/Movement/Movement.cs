@@ -16,7 +16,6 @@ public class Movement : MonoBehaviour {
 
     [Required]
     public Controls controls;
-
     private GameController gameController;
 
     [Title("Speeds")]

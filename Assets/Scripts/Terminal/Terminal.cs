@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -31,6 +32,7 @@ public class Terminal : MonoBehaviour
 
     [SerializeField]
     private List<Entry> history;
+    private int historyIndex = 0;
 
     private void Start () {
         terminalUI = GetComponent<TerminalUI>();
@@ -39,6 +41,7 @@ public class Terminal : MonoBehaviour
         {
             new Entry() { command = "<color=yellow>Survival</color>" }
         };
+        historyIndex = history.Count;
     }
 
     private string[] parseCommand (string command) {
@@ -59,6 +62,7 @@ public class Terminal : MonoBehaviour
           time_minute = (short) now.Minute,
           time_second = (short) now.Second
         });
+        historyIndex = history.Count;
         updateOutput();
 
         runCommand(parseCommand(commandInput));
@@ -71,7 +75,7 @@ public class Terminal : MonoBehaviour
 
     bool strcmp (string str1, string str2) { return string.Equals(str1, str2); }
 
-    //BUG: error when writing "-"
+    //BUG: writing "-" unhandled
     private void runCommand(string[] cmd) {
         if (cmd.Length < 1) { return; }
         if (strcmp(cmd[0], Commands[0])) { //echo
@@ -84,6 +88,7 @@ public class Terminal : MonoBehaviour
                     output += cmd[i] + " ";
                 debugMessage(output);
             }
+            return;
         }
         
         if (strcmp(cmd[0], Commands[1]) || strcmp(cmd[0], Commands[2])) //help/list
@@ -100,6 +105,7 @@ public class Terminal : MonoBehaviour
                     row = "\t";
                 }
             }
+            return;
         }
 
         if (strcmp(cmd[0], Commands[3]) || strcmp(cmd[0], Commands[4])) //quit/exit
@@ -116,18 +122,21 @@ public class Terminal : MonoBehaviour
 
                 StartCoroutine(QuitGame());
             }
+            return;
         }
 
         if (strcmp(cmd[0], Commands[5])) //stop
         {
             StopAllCoroutines();
-            debugMessage("Stopped exiting");
+            debugMessage("Stopped all coroutines");
+            return;
         }
 
         if (strcmp(cmd[0], Commands[6])) //clear
         {
             history.Clear();
             updateOutput();
+            return;
         }
 
         if (strcmp(cmd[0], Commands[7])) //sethealth
@@ -140,7 +149,39 @@ public class Terminal : MonoBehaviour
 
             Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
             player.setHealth(int.Parse(cmd[1]));
+            return;
         }
+
+        debugMessage("");
+
+    }
+
+    public string getPreviousCommandHistory() {
+        if (historyIndex <= 1)
+            return "";
+        do
+        {
+            historyIndex--;
+        }
+        while (history[historyIndex].time_hour == 0 && historyIndex > 0);
+        return history[historyIndex].command;
+    }
+
+    public string getNextCommandHistory() {
+        if (historyIndex == history.Count)
+            return "";
+
+        while (history[historyIndex].time_hour == 0 && historyIndex < history.Count)
+        {
+            historyIndex++;
+        }
+
+        /*do
+        {
+            historyIndex++;
+        }
+        while (history[historyIndex].time_hour == 0 && historyIndex < history.Count);*/
+        return history[historyIndex].command;
     }
 
     private IEnumerator QuitGame() {

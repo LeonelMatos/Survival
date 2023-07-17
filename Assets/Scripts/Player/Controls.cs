@@ -15,4 +15,6 @@ public class Controls : ScriptableObject
 
 	[Title("Terminal", "", TitleAlignments.Centered)]
 	public KeyCode terminal = KeyCode.Slash;
+	public KeyCode historyPrevious = KeyCode.UpArrow;
+	public KeyCode historyNext = KeyCode.DownArrow;
 }

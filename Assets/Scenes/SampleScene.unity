@@ -8295,9 +8295,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6cbe770c3835db478c00a87bce7fbef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  history: []
-  Commands:
-  - setHealth
 --- !u!1 &2073954467
 GameObject:
   m_ObjectHideFlags: 0

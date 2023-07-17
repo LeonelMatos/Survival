@@ -38,10 +38,17 @@ public class TerminalUI : MonoBehaviour
 			else
 				KillTerminal();
 		}
-	}
 
-	//TODO:
-	//when writing stop other scripts from reading input.
+		if (Input.GetKeyDown(controls.historyPrevious))
+		{
+			setInputText(terminal.getPreviousCommandHistory());
+		}
+
+		if (Input.GetKeyDown(controls.historyNext))
+		{
+			setInputText(terminal.getNextCommandHistory());
+		}
+	}
 
 	private void InstantiateTerminal()
 	{
@@ -91,6 +98,12 @@ public class TerminalUI : MonoBehaviour
 
 
 		textBox.SetText(text);
+	}
+
+	public void setInputText(string text) {
+		TMP_InputField inputField = terminalObject.transform.GetChild(1).GetComponent<TMP_InputField>();
+
+		inputField.text = text;
 	}
 
 }
